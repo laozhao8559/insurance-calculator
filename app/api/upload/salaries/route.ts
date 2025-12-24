@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
     }));
 
     // 插入数据库
-    const { error } = await supabase.from('salaries').insert(salaries);
+    const { error } = await supabase().from('salaries').insert(salaries);
 
     if (error) {
       return NextResponse.json<ApiResponse>({

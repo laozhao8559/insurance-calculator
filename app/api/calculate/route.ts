@@ -5,7 +5,7 @@ import { Result, ApiResponse, EmployeeSalarySummary } from '@/types';
 export async function POST(request: NextRequest) {
   try {
     // 1. 获取所有工资数据
-    const { data: salaries, error: salariesError } = await supabase
+    const { data: salaries, error: salariesError } = await supabase()
       .from('salaries')
       .select('*');
 
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 2. 获取佛山城市标准
-    const { data: cities, error: citiesError } = await supabase
+    const { data: cities, error: citiesError } = await supabase()
       .from('cities')
       .select('*')
       .eq('city_name', '佛山')
@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
     });
 
     // 5. 插入结果到数据库
-    const { error: insertError } = await supabase.from('results').insert(results);
+    const { error: insertError } = await supabase().from('results').insert(results);
 
     if (insertError) {
       return NextResponse.json<ApiResponse>({

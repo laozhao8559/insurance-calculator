@@ -4,7 +4,7 @@ import { Result, ApiResponse } from '@/types';
 
 export async function GET(request: NextRequest) {
   try {
-    const { data, error } = await supabase
+    const { data, error } = await supabase()
       .from('results')
       .select('*')
       .order('id', { ascending: false });

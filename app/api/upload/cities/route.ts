@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
     }));
 
     // 插入数据库
-    const { error } = await supabase.from('cities').insert(cities);
+    const { error } = await supabase().from('cities').insert(cities);
 
     if (error) {
       return NextResponse.json<ApiResponse>({
